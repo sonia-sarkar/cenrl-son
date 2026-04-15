@@ -52,6 +52,12 @@ python3 $RLFOLDER/models/epsilon_greedy/epsilon_greedy_sampling.py \
   -o $OUTDIR/epsilon_greedy_c0_stepsize0.0_initval0.0 \
   -g $GROUND_TRUTH -a $TRANCO -f $FEATURES 2>&1 | grep -E "Done with|episode"
 
+echo "[4/4] Uncertainty Sampling (active learning)..."
+python3 $RLFOLDER/models/active_learning/uncertainty_sampling.py \
+  -m $MEASUREMENTS -E $EPISODES \
+  -o $OUTDIR/uncertainty_sampling_c0_stepsize0.0_initval0.0 \
+  -g $GROUND_TRUTH -a $TRANCO -f $FEATURES 2>&1 | grep -E "Done with|episode"
+
 echo ""
 echo "All models done. Plotting with baselines..."
 
