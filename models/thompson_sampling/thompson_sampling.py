@@ -123,6 +123,7 @@ class ThompsonSamplingParserOptions(ParserOptions):
 
     def set_params(self, args):
         super().set_params(args)
+        self.params["action_value_file"] = None
 
 
 if __name__ == "__main__":
