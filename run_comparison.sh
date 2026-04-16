@@ -52,10 +52,17 @@ python3 $RLFOLDER/models/epsilon_greedy/epsilon_greedy_sampling.py \
   -o $OUTDIR/epsilon_greedy_c0_stepsize0.0_initval0.0 \
   -g $GROUND_TRUTH -a $TRANCO -f $FEATURES 2>&1 | grep -E "Done with|episode"
 
-echo "[4/4] Uncertainty Sampling (active learning)..."
+echo "[4/5] Uncertainty Sampling (active learning)..."
 python3 $RLFOLDER/models/active_learning/uncertainty_sampling.py \
   -m $MEASUREMENTS -E $EPISODES \
   -o $OUTDIR/uncertainty_sampling_c0_stepsize0.0_initval0.0 \
+  -g $GROUND_TRUTH -a $TRANCO -f $FEATURES 2>&1 | grep -E "Done with|episode"
+
+echo "[5/5] LinUCB (contextual bandit, alpha=0.5)..."
+python3 $RLFOLDER/models/contextual_bandit/linucb.py \
+  -m $MEASUREMENTS -E $EPISODES \
+  -alpha 0.5 \
+  -o $OUTDIR/linucb_c0_stepsize0.0_initval0.0 \
   -g $GROUND_TRUTH -a $TRANCO -f $FEATURES 2>&1 | grep -E "Done with|episode"
 
 echo ""
